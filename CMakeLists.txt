@@ -497,11 +497,16 @@ target_include_directories(onnxifi_loader PUBLIC
   $<INSTALL_INTERFACE:include>)
 # Users of ONNX backend API would compile it with their toolchain, so it is
 # implemented in standard C89 for maximum compatibility
+# set_target_properties(onnxifi_loader
+#                       PROPERTIES C_STANDARD
+#                                  90
+#                                  C_EXTENSIONS
+#                                  NO)
 set_target_properties(onnxifi_loader
                       PROPERTIES C_STANDARD
-                                 90
+                                 99
                                  C_EXTENSIONS
-                                 NO)
+				 YES)
 target_link_libraries(onnxifi_loader PUBLIC onnxifi ${CMAKE_DL_LIBS})
 if(MSVC)
   add_msvc_runtime_flag(onnxifi_loader)
